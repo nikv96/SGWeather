@@ -1,0 +1,181 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/psi_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:onClick="closePSI"
+            android:text="Close"/>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/verticalgradient"></View>
+
+        <TextView
+            android:id="@+id/psilevel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="15dp"
+            android:clickable="true"
+            android:text="PSI Level >"
+            android:textAllCaps="true"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/threehrpsi_linear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/threehr_psi_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginBottom="15dp"
+                    android:text="10PM"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                <TextView
+                    android:id="@+id/threehr_psi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="3dp"
+                    android:text="108"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+            </LinearLayout>
+            <View
+                android:id="@+id/divider4"
+                android:layout_width="1dp"
+                android:layout_height="60dp"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="75dp"
+                android:background="@drawable/gradientline" />
+
+            <LinearLayout
+                android:id="@+id/twohrpsi_linear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="45dp"
+                android:layout_toRightOf="@+id/threehrpsi_linear"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/twohr_psi_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginBottom="15dp"
+                    android:text="11PM"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <TextView
+                    android:id="@+id/twohr_psi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="3dp"
+                    android:text="108"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/divider5"
+                android:layout_width="1dp"
+                android:layout_height="60dp"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="160dp"
+                android:background="@drawable/gradientline"/>
+
+            <LinearLayout
+                android:id="@+id/onehrpsi_linear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="40dp"
+                android:layout_toLeftOf="@+id/nowpsi_linear"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/onehr_psi_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    android:text="12PM"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <TextView
+                    android:id="@+id/onehr_psi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="3dp"
+                    android:text="108"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+            </LinearLayout>
+            <View
+                android:id="@+id/divider6"
+                android:layout_width="1dp"
+                android:layout_height="60dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="85dp"
+                android:background="@drawable/gradientline" />
+            <LinearLayout
+                android:id="@+id/nowpsi_linear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="30dp"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/now_psi_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    android:text="Now"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                <TextView
+                    android:id="@+id/now_psi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="3dp"
+                    android:text="108"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/verticalgradient"></View>
+        <fragment
+            android:id="@+id/map"
+            android:name="com.example.android.neaapitest.MapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="15dp"
+            />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/verticalgradient"></View>
+
+    </LinearLayout>
+</ScrollView>
