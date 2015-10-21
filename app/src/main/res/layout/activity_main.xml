@@ -1,3 +1,17 @@
+<!--
+__Home screen activity__
+    NAME     =  ID
+Weather icon = Weather_ImageView
+Weather text = Weather_TextView
+Temperature text = Temperature_TextView
+Humidity text = Humidity_TextView
+TEMPERATURE FORECAST Text = temperature_forecast
+'Now' Text = now_text_view_1
+'now' Temp = now_temp
+'Now + 1' Text = one_hr_textview
+'Now + 1' Temp = onehr_temp
+-->
+
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -23,7 +37,6 @@
                 android:layout_height="75dp"
                 android:layout_alignParentLeft="true"
                 android:layout_marginLeft="20dp"
-                android:onClick="CallWebAPI"
                 android:src="@drawable/sun_image"/>
 
             <TextView
