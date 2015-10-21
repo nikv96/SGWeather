@@ -1,0 +1,109 @@
+package com.example.android.neaapitest;
+
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
+/**
+ * Created by user on 21-10-2015.
+ */
+public class RecentAlertsDB {
+    private RecentAlertsDBAdapter dbHelper;
+
+    public RecentAlertsDB(Context context) {
+        dbHelper = new RecentAlertsDBAdapter(context);
+    }
+
+    public int insert(RecentAlerts recentAlerts) {
+
+        //Open connection to write data
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(RecentAlerts.KEY_description, recentAlerts.description);
+
+        // Inserting Row
+        long recentAlerts_Id = db.insert(RecentAlerts.TABLE, null, values);
+        db.close(); // Closing database connection
+        return (int) recentAlerts_Id;
+    }
+
+    public void delete(int recentalerts_Id) {
+
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        // It's a good practice to use parameter ?, instead of concatenate string
+        db.delete(RecentAlerts.TABLE, RecentAlerts.KEY_ID + "= ?", new String[] { String.valueOf(recentalerts_Id) });
+        db.close(); // Closing database connection
+    }
+
+    public void update(RecentAlerts recentAlerts) {
+
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(RecentAlerts.KEY_description, recentAlerts.description);
+
+        // It's a good practice to use parameter ?, instead of concatenate string
+        db.update(RecentAlerts.TABLE, values, RecentAlerts.KEY_ID + "= ?", new String[] { String.valueOf(recentAlerts.student_ID) });
+        db.close(); // Closing database connection
+    }
+
+    public ArrayList<HashMap<String, String>> getAlertsList() {
+        //Open connection to read only
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        String selectQuery =  "SELECT " +
+                RecentAlerts.KEY_ID + ", " +
+                RecentAlerts.KEY_description +
+                " FROM " + RecentAlerts.TABLE;
+
+        //Student student = new Student();
+        ArrayList<HashMap<String, String>> alertsList = new ArrayList<HashMap<String, String>>();
+
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        // looping through all rows and adding to list
+
+        if (cursor.moveToFirst()) {
+            do {
+                HashMap<String, String> alert = new HashMap<String, String>();
+                alert.put("id", cursor.getString(cursor.getColumnIndex(RecentAlerts.KEY_ID)));
+                alert.put("description", cursor.getString(cursor.getColumnIndex(RecentAlerts.KEY_description)));
+                alertsList.add(alert);
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        db.close();
+        return alertsList;
+
+    }
+
+    public RecentAlerts getAlertById(int Id){
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        String selectQuery =  "SELECT  " +
+                RecentAlerts.KEY_ID + "," +
+                RecentAlerts.KEY_description +
+                " FROM " + RecentAlerts.TABLE
+                + " WHERE " +
+                RecentAlerts.KEY_ID + "=?";// It's a good practice to use parameter ?, instead of concatenate string
+
+        int iCount =0;
+        RecentAlerts recentAlerts = new RecentAlerts();
+
+        Cursor cursor = db.rawQuery(selectQuery, new String[] { String.valueOf(Id) } );
+
+        if (cursor.moveToFirst()) {
+            do {
+                recentAlerts.student_ID =cursor.getInt(cursor.getColumnIndex(RecentAlerts.KEY_ID));
+                recentAlerts.description =cursor.getString(cursor.getColumnIndex(RecentAlerts.KEY_description));
+
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        db.close();
+        return recentAlerts;
+    }
+}
