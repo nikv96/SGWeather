@@ -32,24 +32,17 @@ public class RecentAlertsScreen extends ListActivity implements android.view.Vie
         RecentAlerts recentAlerts = new RecentAlerts();
             recentAlerts.description = "PSI +1";
             recentAlerts.student_ID = 0;
-            if (_student_id == 0) {
+
                 _student_id = alertsDB.insert(recentAlerts);
-            } else {
-                alertsDB.update(recentAlerts);
-            }
         recentAlerts.description = "PSI +2";
         recentAlerts.student_ID = 1;
-        if (_student_id == 0) {
-            _student_id = alertsDB.insert(recentAlerts);
-        } else {
-            alertsDB.update(recentAlerts);
-        }
 
-        //This section does not work
+            _student_id = alertsDB.insert(recentAlerts);
+
         ArrayList<HashMap<String, String>> alertsList =  alertsDB.getAlertsList();
         int size = alertsList.size();
-        while(size>0) {
-            ListView lv = getListView();
+        while(size>=0) {
+            //This section does not work
             ListAdapter adapter = new SimpleAdapter( this,alertsList, R.layout.list_view_element, new String[] { "id","description"}, new int[] {R.id.student_Id, R.id.student_name});
             setListAdapter(adapter);
             size--;
