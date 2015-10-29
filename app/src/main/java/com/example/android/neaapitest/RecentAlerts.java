@@ -12,6 +12,6 @@ public class RecentAlerts {
     public static final String KEY_description = "description";
 
     // property help us to keep data
-    public int student_ID;
+    public int alert_ID;
     public String description;
 }

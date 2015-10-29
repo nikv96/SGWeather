@@ -10,6 +10,21 @@ TEMPERATURE FORECAST Text = temperature_forecast
 'now' Temp = now_temp
 'Now + 1' Text = one_hr_textview
 'Now + 1' Temp = onehr_temp
+'Now + 2' Text = two_hr_textview
+'Now + 2' Temp = twohr_temp
+'Now + 3' Text = three_hr_textview
+'Now + 3' Temp = threehr_temp
+PSI LEVEL Text = psilevel
+'Now - 3' Text = threehr_psi_textview
+'Now - 3' PSI Value = threehr_psi
+'Now - 2' Text = twohr_psi_textview
+'Now - 2' PSI Value = twohr_psi
+'Now - 1' Text = onehr_psi_textview
+'Now - 1' PSI Value = onehr_psi
+'Now' Text = now_psi_textview
+'Now' PSI Value = now_psi
+RECENT ALERTS Text = recentalerts
+Recent Alerts ListView = recent_alerts_list
 -->
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -242,7 +257,7 @@ TEMPERATURE FORECAST Text = temperature_forecast
                 android:layout_marginLeft="10dp"
                 android:orientation="vertical">
                 <TextView
-                    android:id="@+id/threehr_psi_text"
+                    android:id="@+id/threehr_psi_textview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
@@ -358,6 +373,7 @@ TEMPERATURE FORECAST Text = temperature_forecast
             android:background="@drawable/verticalgradient"></View>
 
         <TextView
+            android:id = "@+id/recentalerts"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -369,46 +385,12 @@ TEMPERATURE FORECAST Text = temperature_forecast
             android:textAllCaps="true"
             android:textAppearance="?android:attr/textAppearanceLarge"/>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
 
-            <TextView
+            <ListView
+                android:id="@+id/recent_alerts_list"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="! PSI Levels Currently High"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:layout_height="wrap_content"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="! PSI Levels Currently High"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="! PSI Levels Currently High"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="! PSI Levels Currently High"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="! PSI Levels Currently High"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="! PSI Levels Currently High"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-        </LinearLayout>
     </LinearLayout>
 </ScrollView>

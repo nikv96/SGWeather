@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -19,37 +20,21 @@ import java.util.HashMap;
 /**
  * Created by user on 18-10-2015.
  */
-public class RecentAlertsScreen extends ListActivity implements android.view.View.OnClickListener{
+public class RecentAlertsScreen extends AppCompatActivity{
 
-    private int _student_id = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.recent_alerts_screen);
+
+        ListView listView = (ListView) findViewById(R.id.recent_list);
+
         RecentAlertsDB alertsDB = new RecentAlertsDB(this);
+        ArrayList<HashMap<String, String>> alertsList =  alertsDB.getAlertsList(20);
 
-        //Generating Random Data to insert to database
-        RecentAlerts recentAlerts = new RecentAlerts();
-            recentAlerts.description = "PSI +1";
-            recentAlerts.student_ID = 0;
-
-                _student_id = alertsDB.insert(recentAlerts);
-        recentAlerts.description = "PSI +2";
-        recentAlerts.student_ID = 1;
-
-            _student_id = alertsDB.insert(recentAlerts);
-
-        ArrayList<HashMap<String, String>> alertsList =  alertsDB.getAlertsList();
-        int size = alertsList.size();
-        while(size>=0) {
-            //This section does not work
-            ListAdapter adapter = new SimpleAdapter( this,alertsList, R.layout.list_view_element, new String[] { "id","description"}, new int[] {R.id.student_Id, R.id.student_name});
-            setListAdapter(adapter);
-            size--;
-        }
-        if(alertsList.size() == 0){
-            Toast.makeText(this, "No student!", Toast.LENGTH_SHORT).show();
-        }
+        ListAdapter adapter = new SimpleAdapter( this,alertsList, R.layout.list_view_element, new String[] { "id","description"}, new int[] {R.id.alert_Id, R.id.alert_name});
+        listView.setAdapter(adapter);
+        justifyListViewHeightBasedOnChildren(listView);
 
     }
 
@@ -71,8 +56,26 @@ public class RecentAlertsScreen extends ListActivity implements android.view.Vie
         startActivity(intent);
     }
 
-    @Override
-    public void onClick(View v) {
-        return;
+    public void justifyListViewHeightBasedOnChildren (ListView listView) {
+
+        ListAdapter adapter = listView.getAdapter();
+
+        if (adapter == null) {
+            return;
+        }
+        ViewGroup vg = listView;
+        int totalHeight = 0;
+        for (int i = 0; i < adapter.getCount(); i++) {
+            View listItem = adapter.getView(i, null, vg);
+            listItem.measure(0, 0);
+            totalHeight += listItem.getMeasuredHeight();
+        }
+
+        ViewGroup.LayoutParams par = listView.getLayoutParams();
+        par.height = totalHeight + (listView.getDividerHeight() * (adapter.getCount() - 1));
+        listView.setLayoutParams(par);
+        listView.requestLayout();
     }
+
+
 }

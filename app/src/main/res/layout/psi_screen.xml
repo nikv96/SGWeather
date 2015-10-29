@@ -1,3 +1,17 @@
+<!--
+NAME = ID
+PSI LEVEL text = psiscreen_psilevel
+'Now - 3' Text = threehr_psi_textview_psiscreen
+'Now - 3' PSI Value = threehr_psi_psiscreen
+'Now - 2' Text = twohr_psi_textview_psiscreen
+'Now - 2' PSI Value = twohr_psi_psiscreen
+'Now - 1' Text = onehr_psi_textview_psiscreen
+'Now - 1' PSI Value = onehr_psi_psiscreen
+'Now' Text = now_psi_textview_psiscreen
+'Now' PSI Value = now_psi_psiscreen
+Map Fragment = map
+-->
+
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -27,7 +41,7 @@
             android:background="@drawable/verticalgradient"></View>
 
         <TextView
-            android:id="@+id/psilevel"
+            android:id="@+id/psiscreen_psilevel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -43,13 +57,13 @@
             android:layout_height="wrap_content">
 
             <LinearLayout
-                android:id="@+id/threehrpsi_linear"
+                android:id="@+id/threehrpsi_linear_psiscreen"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:orientation="vertical">
                 <TextView
-                    android:id="@+id/threehr_psi_text"
+                    android:id="@+id/threehr_psi_text_psiscreen"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
@@ -57,7 +71,7 @@
                     android:text="10PM"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
                 <TextView
-                    android:id="@+id/threehr_psi"
+                    android:id="@+id/threehr_psi_psiscreen"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingLeft="3dp"
@@ -73,14 +87,14 @@
                 android:background="@drawable/gradientline" />
 
             <LinearLayout
-                android:id="@+id/twohrpsi_linear"
+                android:id="@+id/twohrpsi_linear_psiscreen"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="45dp"
                 android:layout_toRightOf="@+id/threehrpsi_linear"
                 android:orientation="vertical">
                 <TextView
-                    android:id="@+id/twohr_psi_textview"
+                    android:id="@+id/twohr_psi_textview_psiscreen"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
@@ -89,7 +103,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <TextView
-                    android:id="@+id/twohr_psi"
+                    android:id="@+id/twohr_psi_psiscreen"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingLeft="3dp"
@@ -106,14 +120,14 @@
                 android:background="@drawable/gradientline"/>
 
             <LinearLayout
-                android:id="@+id/onehrpsi_linear"
+                android:id="@+id/onehrpsi_linear_psiscreen"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="40dp"
                 android:layout_toLeftOf="@+id/nowpsi_linear"
                 android:orientation="vertical">
                 <TextView
-                    android:id="@+id/onehr_psi_textview"
+                    android:id="@+id/onehr_psi_textview_psiscreen"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="15dp"
@@ -121,7 +135,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <TextView
-                    android:id="@+id/onehr_psi"
+                    android:id="@+id/onehr_psi_psiscreen"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingLeft="3dp"
@@ -136,21 +150,21 @@
                 android:layout_marginRight="85dp"
                 android:background="@drawable/gradientline" />
             <LinearLayout
-                android:id="@+id/nowpsi_linear"
+                android:id="@+id/nowpsi_linear_psiscreen"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="30dp"
                 android:orientation="vertical">
                 <TextView
-                    android:id="@+id/now_psi_textview"
+                    android:id="@+id/now_psi_textview_psiscreen"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="15dp"
                     android:text="Now"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
                 <TextView
-                    android:id="@+id/now_psi"
+                    android:id="@+id/now_psi_psiscreen"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingLeft="3dp"
@@ -176,6 +190,8 @@
             android:layout_height="2dp"
             android:layout_marginTop="15dp"
             android:background="@drawable/verticalgradient"></View>
+
+        <!--Enter the legend table image here-->
 
     </LinearLayout>
 </ScrollView>

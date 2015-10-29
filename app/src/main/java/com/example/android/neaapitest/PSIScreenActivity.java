@@ -7,6 +7,9 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 /**
  * Created by user on 18-10-2015.
@@ -33,5 +36,10 @@ public class PSIScreenActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
+    }
+
+    public void setMapLabel (String text) {
+        TextView textView = (TextView) findViewById(R.id.marker_text);
+        textView.setText(text);
     }
 }

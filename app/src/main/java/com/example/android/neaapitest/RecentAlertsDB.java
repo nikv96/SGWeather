@@ -32,11 +32,9 @@ public class RecentAlertsDB {
     }
 
     public void delete(int recentalerts_Id) {
-
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-        // It's a good practice to use parameter ?, instead of concatenate string
         db.delete(RecentAlerts.TABLE, RecentAlerts.KEY_ID + "= ?", new String[] { String.valueOf(recentalerts_Id) });
-        db.close(); // Closing database connection
+        db.close();
     }
 
     public void update(RecentAlerts recentAlerts) {
@@ -46,12 +44,12 @@ public class RecentAlertsDB {
 
         values.put(RecentAlerts.KEY_description, recentAlerts.description);
 
-        // It's a good practice to use parameter ?, instead of concatenate string
-        db.update(RecentAlerts.TABLE, values, RecentAlerts.KEY_ID + "= ?", new String[] { String.valueOf(recentAlerts.student_ID) });
-        db.close(); // Closing database connection
+        db.update(RecentAlerts.TABLE, values, RecentAlerts.KEY_ID + "= ?", new String[]{String.valueOf(recentAlerts.alert_ID)});
+        db.close();
     }
 
-    public ArrayList<HashMap<String, String>> getAlertsList() {
+
+    public ArrayList<HashMap<String, String>> getAlertsList(int n) {
         //Open connection to read only
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         String selectQuery =  "SELECT " +
@@ -59,7 +57,6 @@ public class RecentAlertsDB {
                 RecentAlerts.KEY_description +
                 " FROM " + RecentAlerts.TABLE;
 
-        //Student student = new Student();
         ArrayList<HashMap<String, String>> alertsList = new ArrayList<HashMap<String, String>>();
 
         Cursor cursor = db.rawQuery(selectQuery, null);
@@ -71,7 +68,8 @@ public class RecentAlertsDB {
                 alert.put("id", cursor.getString(cursor.getColumnIndex(RecentAlerts.KEY_ID)));
                 alert.put("description", cursor.getString(cursor.getColumnIndex(RecentAlerts.KEY_description)));
                 alertsList.add(alert);
-            } while (cursor.moveToNext());
+                n--;
+            } while (n>0 && cursor.moveToNext());
         }
 
         cursor.close();
@@ -96,9 +94,8 @@ public class RecentAlertsDB {
 
         if (cursor.moveToFirst()) {
             do {
-                recentAlerts.student_ID =cursor.getInt(cursor.getColumnIndex(RecentAlerts.KEY_ID));
+                recentAlerts.alert_ID =cursor.getInt(cursor.getColumnIndex(RecentAlerts.KEY_ID));
                 recentAlerts.description =cursor.getString(cursor.getColumnIndex(RecentAlerts.KEY_description));
-
             } while (cursor.moveToNext());
         }
 
