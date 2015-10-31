@@ -111,13 +111,11 @@ public class MapFragment extends SupportMapFragment implements GoogleApiClient.C
     @Override
     public void onConnected(Bundle bundle) {
         initCamera();
-
-        int PSI_value = 108;
-        setPsiMarker(Integer.toString(PSI_value),"West",1.345901, 103.708236);
-        setPsiMarker(Integer.toString(PSI_value),"East",1.345901,103.936937);
-        setPsiMarker(Integer.toString(PSI_value),"Middle",1.345901,103.822158);
-        setPsiMarker(Integer.toString(PSI_value),"North",1.428671,103.822158);
-        setPsiMarker(Integer.toString(PSI_value),"South",1.273726,103.822158);
+        setPsiMarker("West",1.345901, 103.708236);
+        setPsiMarker("East",1.345901,103.936937);
+        setPsiMarker("Middle",1.345901,103.822158);
+        setPsiMarker("North",1.428671,103.822158);
+        setPsiMarker("South",1.273726,103.822158);
     }
 
     private void initCamera() {
@@ -135,15 +133,13 @@ public class MapFragment extends SupportMapFragment implements GoogleApiClient.C
         getMap().setMapType(MAP_TYPES[1]);
     }
 
-    private void setPsiMarker(String PSI, String title, double lat, double lng){
-        PSIScreenActivity psi = new PSIScreenActivity();
+    private void setPsiMarker(String title, double lat, double lng){
         LatLng latLng =new LatLng(lat,lng);
         MarkerOptions options = new MarkerOptions().position(latLng);
         options.title(title);
         LayoutInflater inflater = (LayoutInflater) getActivity()
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        psi.setMapLabel(PSI);
         View v = inflater.inflate(R.layout.image_view, null);
 
         options.icon(BitmapDescriptorFactory.fromBitmap(loadBitmapFromView(v)));

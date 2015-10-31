@@ -2,6 +2,7 @@ package com.example.android.neaapitest;
 
 import android.app.ListActivity;
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.ScrollView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
@@ -50,6 +52,12 @@ public class MainActivity extends AppCompatActivity {
         ListAdapter adapter = new SimpleAdapter( this, alertsList, R.layout.list_view_element, new String[] {"id","description"}, new int[] {R.id.alert_Id, R.id.alert_name});
         listView.setAdapter(adapter);
         justifyListViewHeightBasedOnChildren(listView);
+
+        ScrollView img = (ScrollView)findViewById(R.id.scroll1);
+        img.setBackgroundResource(R.drawable.progress_animation);
+        AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+
+        frameAnimation.start();
     }
 
     @Override
