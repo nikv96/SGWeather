@@ -11,6 +11,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.GridView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.ScrollView;
@@ -23,24 +25,32 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 
 public class MainActivity extends AppCompatActivity {
 
-    private int _student_id = 0;
+    public String[] temperatureString = new String[] {
+            "Now", "1PM", "2PM", "3PM", "32\u00b0C",
+            "32°C", "32°C", "32°C"};
+
+    public static String[] psiString = new String[] {
+            "Now", "1PM", "2PM", "3PM", "108",
+            "108", "108", "108"};
+
+    public static String[] getPSIString(){
+        return psiString;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         //setting list view to recent alerts
-        ListView listView = (ListView) findViewById(R.id.recent_alerts_list);
-
-
+        ListView listView = (ListView) findViewById(R.id.RecentAlerts);
         RecentAlertsDB alertsDB = new RecentAlertsDB(this);
-
-
         //Generating Random Data to insert to database
         RecentAlerts recentAlerts = new RecentAlerts();
         recentAlerts.description = "PSI +1";
@@ -53,11 +63,56 @@ public class MainActivity extends AppCompatActivity {
         listView.setAdapter(adapter);
         justifyListViewHeightBasedOnChildren(listView);
 
-        ScrollView img = (ScrollView)findViewById(R.id.scroll1);
+        //setting scrollview background to gif
+        ScrollView img = (ScrollView)findViewById(R.id.MainScrollView);
         img.setBackgroundResource(R.drawable.progress_animation);
         AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
-
         frameAnimation.start();
+
+
+        //Setting temperature grid view
+        //uncomment the block below and edit
+        /*temperatureString[0] = "";
+        temperatureString[1] = "";
+        temperatureString[2] = "";
+        temperatureString[3] = "";
+        temperatureString[4] = "";
+        temperatureString[5] = "";
+        temperatureString[6] = "";
+        temperatureString[7] = ""; */
+
+        GridView temperatureGridView = (GridView) findViewById(R.id.TemperatureTimes);
+        ArrayAdapter<String> temperatureAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, Arrays.copyOfRange(temperatureString,0,4));
+        temperatureGridView.setAdapter(temperatureAdapter);
+
+        GridView temperatureValueGridView = (GridView) findViewById(R.id.TemperatureValues);
+        ArrayAdapter<String> temperatureValueAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, Arrays.copyOfRange(temperatureString,4,8));
+        temperatureValueGridView.setAdapter(temperatureValueAdapter);
+
+        //Setting PSI level grid view
+        //uncomment the block below to edit
+        /*psiString[0] = "";
+        psiString[1] = "";
+        psiString[2] = "";
+        psiString[3] = "";
+        psiString[4] = "";
+        psiString[5] = "";
+        psiString[6] = "";
+        psiString[7] = ""; */
+
+        GridView psiGridView = (GridView) findViewById(R.id.PSITimes);
+        ArrayAdapter<String> psiAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, Arrays.copyOfRange(psiString,0,4));
+        psiGridView.setAdapter(psiAdapter);
+
+        GridView psiValuesGridView = (GridView) findViewById(R.id.PSIValues);
+        ArrayAdapter<String> psiValuesAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, Arrays.copyOfRange(psiString,4,8));
+        psiValuesGridView.setAdapter(psiValuesAdapter);
+
+
     }
 
     @Override
